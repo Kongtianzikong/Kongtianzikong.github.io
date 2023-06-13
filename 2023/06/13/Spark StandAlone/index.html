@@ -5,7 +5,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	<meta name="theme-color" content="#33474d">
-	<title>Hexo</title>
+	<title>Spark StandAlone搭建 | Hexo</title>
 	<link rel="stylesheet" href="/css/style.css" />
 	
       <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
@@ -29,13 +29,9 @@
 	</header>
 
 	<main>
-		
-
-
-
-	<article>
+		<article>
 	
-		<h1><a href="/2023/06/13/Spark StandAlone/">Spark StandAlone搭建</a></h1>
+		<h1>Spark StandAlone搭建</h1>
 	
 	<div class="article__infos">
 		<span class="article__date">2023-06-13</span><br />
@@ -99,96 +95,11 @@
 	
 
 	
-
-</article>
-
-
-
-
-	<article>
-	
-		<h1><a href="/2023/06/13/Spark(local)/">Spark(local)</a></h1>
-	
-	<div class="article__infos">
-		<span class="article__date">2023-06-13</span><br />
-		
-			<span class="article__category">
-				<a class="article-category-link" href="/categories/%E5%B7%A5%E5%85%B7/">工具</a>
-			</span><br />
-		
-		
-			<span class="article__tags">
-			  	<a class="article__tag-none-link" href="/tags/spark/" rel="tag">spark</a> <a class="article__tag-none-link" href="/tags/%E6%90%AD%E5%BB%BA/" rel="tag">搭建</a>
-			</span>
-		
-	</div>
-
-	
-
-	
-		<h1 id="Spark-local-模式"><a href="#Spark-local-模式" class="headerlink" title="Spark(local)模式"></a>Spark(local)模式</h1><h2 id="一、创建虚拟环境"><a href="#一、创建虚拟环境" class="headerlink" title="一、创建虚拟环境"></a>一、创建虚拟环境</h2><p>1、需将Python环境需要安装到Linux(虚拟机)和Windows(本机)上<br>在windows环境安装Anaconda，在三台服务器分别配置Anaconda<br>在Windows环境下，用Anaconda自带的命令行界面创建虚拟环境<br><figure class="figure"><img src="/../image-spark(local)/1.png"></figure></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda create -n pyspark python=3.8</span><br></pre></td></tr></table></figure>
-<p>#切换到虚拟环境内</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda activate pyspark</span><br></pre></td></tr></table></figure>
-<p>#在虚拟环境内安装包</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install pyhive pyspark jieba -i https://pypi.tuna.tsinghua.edu.cn/simple </span><br></pre></td></tr></table></figure>
-<p>#切换pyspark版本</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pip uninstall pyspark</span><br><span class="line">pip install pyspark==3.2.0 -i https://pypi.tuna.tsinghua.edu.cn/simple</span><br></pre></td></tr></table></figure>
-<p>2、最终配置好的状态：<br><figure class="figure"><img src="/../image-spark(local)/2.png"></figure><br>3、最终配置好的状态：<br><figure class="figure"><img src="/../image-spark(local)/3.png"></figure><br>4、上传spark-3.2.0-bin-hadoop3.2.tgz到Linux服务器中<br>解压并创建软链接<br><figure class="figure"><img src="/../image-spark(local)/4.png"></figure><br>5、进行测试</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(base) [root@node1 bin]# ./pyspark</span><br></pre></td></tr></table></figure>
-<p><figure class="figure"><img src="/../image-spark(local)/5.png"></figure></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sc.parallelize([1,2,3,4,5]).map(lambda x: x + 1).collect()</span><br></pre></td></tr></table></figure>
-<p><figure class="figure"><img src="/../image-spark(local)/6.png"></figure><br>Web UI (4040)<br>Spark程序在运行的时候, 会绑定到机器的4040端口上.<br><figure class="figure"><img src="/../image-spark(local)/7.png"></figure><br>4040端口是一个WEBUI端口, 可以在浏览器内打开:<br><figure class="figure"><img src="/../image-spark(local)/8.png"></figure><br>打开监控页面后, 可以发现 在程序内仅有一个Driver<br>因为我们是Local模式, Driver即管理又干活<br>同时, 输入jps<br><figure class="figure"><img src="/../image-spark(local)/9.png"></figure></p>
-
-	
+		<span class="different-posts"><a href="/2023/06/13/Spark%20StandAlone/" onclick="window.history.go(-1); return false;">⬅️ Go back </a></span>
 
 	
 
 </article>
-
-
-
-
-	<article>
-	
-		<h1><a href="/2023/06/07/hello-world/">Hello World</a></h1>
-	
-	<div class="article__infos">
-		<span class="article__date">2023-06-07</span><br />
-		
-		
-	</div>
-
-	
-
-	
-		<p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-
-	
-
-	
-
-</article>
-
-
-
-
-
-
-	<span class="different-posts">📕 end of posts 📕</span>
-
 
 	</main>
 
