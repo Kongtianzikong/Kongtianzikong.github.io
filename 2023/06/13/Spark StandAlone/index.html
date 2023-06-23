@@ -53,44 +53,79 @@
 		<h1 id="Spark-StandAlone搭建"><a href="#Spark-StandAlone搭建" class="headerlink" title="Spark StandAlone搭建"></a>Spark StandAlone搭建</h1><ol>
 <li>在所有机器上安装python（Anaconda）<br>同时不要忘记 都创建pysapek虚拟环境 以及安装虚拟环境所需要的包pyspark jieba pyhive<br>2 .在所有机器配置环境变量<br>参考local模式下环境变量的配置内容<br>3.配置配置文件<br>进入到spark的配置文件目录中, cd $SPARK_HOME&#x2F;conf<br>配置workers文件</li>
 </ol>
-<h1 id="改名-去掉后面的-template后缀"><a href="#改名-去掉后面的-template后缀" class="headerlink" title="改名, 去掉后面的.template后缀"></a>改名, 去掉后面的.template后缀</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mv workers.template workers</span><br></pre></td></tr></table></figure>
+<p>改名, 去掉后面的.template后缀</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mv workers.template workers</span><br></pre></td></tr></table></figure>
 <p><figure class="figure"><img src="/../image-sparkstandalone/1.png"></figure></p>
-<h1 id="编辑worker文件"><a href="#编辑worker文件" class="headerlink" title="编辑worker文件"></a>编辑worker文件</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim workers</span><br></pre></td></tr></table></figure>
-<h1 id="将里面的localhost删除-追加"><a href="#将里面的localhost删除-追加" class="headerlink" title="将里面的localhost删除, 追加"></a>将里面的localhost删除, 追加</h1><p>node1<br>node2<br>node3<br>到workers文件内<br><figure class="figure"><img src="/../image-sparkstandalone/2.png"></figure><br>配置spark-env.sh文件</p>
-<h1 id="1-改名"><a href="#1-改名" class="headerlink" title="1. 改名"></a>1. 改名</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mv spark-env.sh.template spark-env.sh</span><br></pre></td></tr></table></figure>
+<p>编辑worker文件</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim workers</span><br></pre></td></tr></table></figure>
+<p>将里面的localhost删除, 追加</p>
+<p>node1</p>
+<p>node2</p>
+<p>node3</p>
+<p>到workers文件内</p>
+<p><figure class="figure"><img src="/../image-sparkstandalone/2.png"></figure><br>配置spark-env.sh文件</p>
+<ol>
+<li><p>改名</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mv spark-env.sh.template spark-env.sh</span><br></pre></td></tr></table></figure>
 <p><figure class="figure"><img src="/../image-sparkstandalone/3.png"></figure></p>
-<h1 id="2-编辑spark-env-sh-在底部追加如下内容"><a href="#2-编辑spark-env-sh-在底部追加如下内容" class="headerlink" title="2. 编辑spark-env.sh, 在底部追加如下内容"></a>2. 编辑spark-env.sh, 在底部追加如下内容</h1><h2 id="设置JAVA安装目录"><a href="#设置JAVA安装目录" class="headerlink" title="设置JAVA安装目录"></a>设置JAVA安装目录</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">JAVA_HOME=/export/server/jdk</span><br></pre></td></tr></table></figure>
-<h2 id="HADOOP软件配置文件目录，读取HDFS上文件和运行YARN集群"><a href="#HADOOP软件配置文件目录，读取HDFS上文件和运行YARN集群" class="headerlink" title="HADOOP软件配置文件目录，读取HDFS上文件和运行YARN集群"></a>HADOOP软件配置文件目录，读取HDFS上文件和运行YARN集群</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">HADOOP_CONF_DIR=/export/server/hadoop/etc/hadoop</span><br><span class="line">YARN_CONF_DIR=/export/server/hadoop/etc/hadoop</span><br></pre></td></tr></table></figure>
-<h2 id="指定spark老大Master的IP和提交任务的通信端口"><a href="#指定spark老大Master的IP和提交任务的通信端口" class="headerlink" title="指定spark老大Master的IP和提交任务的通信端口"></a>指定spark老大Master的IP和提交任务的通信端口</h2><h1 id="告知Spark的master运行在哪个机器上"><a href="#告知Spark的master运行在哪个机器上" class="headerlink" title="告知Spark的master运行在哪个机器上"></a>告知Spark的master运行在哪个机器上</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">export SPARK_MASTER_HOST=node1</span><br></pre></td></tr></table></figure>
-<h1 id="告知sparkmaster的通讯端口"><a href="#告知sparkmaster的通讯端口" class="headerlink" title="告知sparkmaster的通讯端口"></a>告知sparkmaster的通讯端口</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">export SPARK_MASTER_PORT=7077</span><br></pre></td></tr></table></figure>
-<h1 id="告知spark-master的-webui端口"><a href="#告知spark-master的-webui端口" class="headerlink" title="告知spark master的 webui端口"></a>告知spark master的 webui端口</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SPARK_MASTER_WEBUI_PORT=8080</span><br></pre></td></tr></table></figure>
-<h1 id="worker-cpu可用核数"><a href="#worker-cpu可用核数" class="headerlink" title="worker cpu可用核数"></a>worker cpu可用核数</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SPARK_WORKER_CORES=1</span><br></pre></td></tr></table></figure>
-<h1 id="worker可用内存"><a href="#worker可用内存" class="headerlink" title="worker可用内存"></a>worker可用内存</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SPARK_WORKER_MEMORY=1g</span><br></pre></td></tr></table></figure>
-<h1 id="worker的工作通讯地址"><a href="#worker的工作通讯地址" class="headerlink" title="worker的工作通讯地址"></a>worker的工作通讯地址</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SPARK_WORKER_PORT=7078</span><br></pre></td></tr></table></figure>
-<h1 id="worker的-webui地址"><a href="#worker的-webui地址" class="headerlink" title="worker的 webui地址"></a>worker的 webui地址</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SPARK_WORKER_WEBUI_PORT=8081</span><br></pre></td></tr></table></figure>
-<h2 id="设置历史服务器"><a href="#设置历史服务器" class="headerlink" title="设置历史服务器"></a>设置历史服务器</h2><h1 id="配置的意思是-将spark程序运行的历史日志-存到hdfs的-x2F-sparklog文件夹中"><a href="#配置的意思是-将spark程序运行的历史日志-存到hdfs的-x2F-sparklog文件夹中" class="headerlink" title="配置的意思是  将spark程序运行的历史日志 存到hdfs的&#x2F;sparklog文件夹中"></a>配置的意思是  将spark程序运行的历史日志 存到hdfs的&#x2F;sparklog文件夹中</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SPARK_HISTORY_OPTS=&quot;-Dspark.history.fs.logDirectory=hdfs://node1:8020/sparklog/ -Dspark.history.fs.cleaner.enabled=true&quot;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>编辑spark-env.sh, 在底部追加如下内容</p>
+</li>
+</ol>
+<p>设置JAVA安装目录</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">JAVA_HOME=/export/server/jdk</span><br></pre></td></tr></table></figure>
+<p>HADOOP软件配置文件目录，读取HDFS上文件和运行YARN集群</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">HADOOP_CONF_DIR=/export/server/hadoop/etc/hadoop</span><br><span class="line">YARN_CONF_DIR=/export/server/hadoop/etc/hadoop</span><br></pre></td></tr></table></figure>
+<p>指定spark老大Master的IP和提交任务的通信端口<br>告知Spark的master运行在哪个机器上</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">export SPARK_MASTER_HOST=node1</span><br></pre></td></tr></table></figure>
+<p>告知sparkmaster的通讯端口</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">export SPARK_MASTER_PORT=7077</span><br></pre></td></tr></table></figure>
+<p>告知spark master的 webui端口</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SPARK_MASTER_WEBUI_PORT=8080</span><br></pre></td></tr></table></figure>
+<p>worker cpu可用核数</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SPARK_WORKER_CORES=1</span><br></pre></td></tr></table></figure>
+<p>worker可用内存</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SPARK_WORKER_MEMORY=1g</span><br></pre></td></tr></table></figure>
+<p>worker的工作通讯地址</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SPARK_WORKER_PORT=7078</span><br></pre></td></tr></table></figure>
+<p>worker的 webui地址</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SPARK_WORKER_WEBUI_PORT=8081</span><br></pre></td></tr></table></figure>
+<h2 id="设置历史服务器"><a href="#设置历史服务器" class="headerlink" title="设置历史服务器"></a>设置历史服务器</h2><p>配置的意思是  将spark程序运行的历史日志 存到hdfs的&#x2F;sparklog文件夹中</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SPARK_HISTORY_OPTS=&quot;-Dspark.history.fs.logDirectory=hdfs://node1:8020/sparklog/ -Dspark.history.fs.cleaner.enabled=true&quot;</span><br></pre></td></tr></table></figure>
+
 <p><figure class="figure"><img src="/../image-sparkstandalone/4.png"></figure><br>在HDFS上创建程序运行历史记录存放的文件夹:</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hadoop fs -mkdir /sparklog</span><br><span class="line">hadoop fs -chmod 777 /sparklog</span><br></pre></td></tr></table></figure>
 <p><figure class="figure"><img src="/../image-sparkstandalone/5.png"></figure><br>配置spark-defaults.conf文件</p>
-<h1 id="1-改名-1"><a href="#1-改名-1" class="headerlink" title="1. 改名"></a>1. 改名</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mv spark-defaults.conf.template spark-defaults.conf</span><br></pre></td></tr></table></figure>
-<p><figure class="figure"><img src="/../image-sparkstandalone/6.png"></figure></p>
-<h1 id="2-修改内容-追加如下内容"><a href="#2-修改内容-追加如下内容" class="headerlink" title="2. 修改内容, 追加如下内容"></a>2. 修改内容, 追加如下内容</h1><h1 id="开启spark的日期记录功能"><a href="#开启spark的日期记录功能" class="headerlink" title="开启spark的日期记录功能"></a>开启spark的日期记录功能</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">spark.eventLog.enabled 	true</span><br></pre></td></tr></table></figure>
-<h1 id="设置spark日志记录的路径"><a href="#设置spark日志记录的路径" class="headerlink" title="设置spark日志记录的路径"></a>设置spark日志记录的路径</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">spark.eventLog.dir	 hdfs://node1:8020/sparklog/ </span><br></pre></td></tr></table></figure>
-<h1 id="设置spark日志是否启动压缩"><a href="#设置spark日志是否启动压缩" class="headerlink" title="设置spark日志是否启动压缩"></a>设置spark日志是否启动压缩</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">spark.eventLog.compress 	true</span><br></pre></td></tr></table></figure>
-<p><figure class="figure"><img src="/../image-sparkstandalone/7.png"></figure><br>配置log4j.properties 文件 [可选配置]</p>
-<h1 id="1-改名-2"><a href="#1-改名-2" class="headerlink" title="1. 改名"></a>1. 改名</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mv log4j.properties.template log4j.properties</span><br></pre></td></tr></table></figure>
-<p><figure class="figure"><img src="/../image-sparkstandalone/8.png"></figure></p>
-<h1 id="2-修改内容-参考下图"><a href="#2-修改内容-参考下图" class="headerlink" title="2. 修改内容 参考下图"></a>2. 修改内容 参考下图</h1><p>将INFO修改为WARN<br><figure class="figure"><img src="/../image-sparkstandalone/9.png"></figure><br>将spark安装文件夹分发到其他服务器上</p>
+<ol>
+<li>改名<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mv spark-defaults.conf.template spark-defaults.conf</span><br></pre></td></tr></table></figure>
+<figure class="figure"><img src="/../image-sparkstandalone/6.png"></figure></li>
+<li>修改内容, 追加如下内容<br>开启spark的日期记录功能<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">spark.eventLog.enabled 	true</span><br></pre></td></tr></table></figure>
+设置spark日志记录的路径<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">spark.eventLog.dir	 hdfs://node1:8020/sparklog/ </span><br></pre></td></tr></table></figure>
+设置spark日志是否启动压缩<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">spark.eventLog.compress 	true</span><br></pre></td></tr></table></figure>
+<figure class="figure"><img src="/../image-sparkstandalone/7.png"></figure></li>
+</ol>
+<p>配置log4j.properties 文件 [可选配置]’</p>
+<ol>
+<li>改名<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mv log4j.properties.template log4j.properties</span><br></pre></td></tr></table></figure>
+<figure class="figure"><img src="/../image-sparkstandalone/8.png"></figure></li>
+<li>修改内容 参考下图</li>
+</ol>
+<p>将INFO修改为WARN</p>
+<p><figure class="figure"><img src="/../image-sparkstandalone/9.png"></figure></p>
+<p>将spark安装文件夹分发到其他服务器上</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">scp -r spark-3.1.2-bin-hadoop3.2 node2:/export/server/</span><br><span class="line">scp -r spark-3.1.2-bin-hadoop3.2 node3:/export/server/</span><br></pre></td></tr></table></figure>
 <p>并在node2、node3给spark安装目录增加软连接</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ln -s /export/server/spark-3.1.2-bin-hadoop3.2 /export/server/spark</span><br></pre></td></tr></table></figure>
-<p><figure class="figure"><img src="/../image-sparkstandalone/10.png"></figure><br><figure class="figure"><img src="/../image-sparkstandalone/11.png"></figure><br>检查每台机器的<br>JAVA_HOME<br>SPARK_HOME<br>PYSPARK_PYTHON<br>等等 环境变量是否正常指向正确的目录<br>启动历史服务器：</p>
+<p><figure class="figure"><img src="/../image-sparkstandalone/10.png"></figure></p>
+<p><figure class="figure"><img src="/../image-sparkstandalone/11.png"></figure><br>检查每台机器的<br>JAVA_HOME<br>SPARK_HOME<br>PYSPARK_PYTHON<br>等等 环境变量是否正常指向正确的目录<br>启动历史服务器：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sbin/start-history-server.sh</span><br></pre></td></tr></table></figure>
 <p><figure class="figure"><img src="/../image-sparkstandalone/12.png"></figure><br>启动spark的master和worker进程</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sbin/start-all.sh</span><br></pre></td></tr></table></figure>
 <p><figure class="figure"><img src="/../image-sparkstandalone/13.png"></figure>	</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jps</span><br></pre></td></tr></table></figure>
-<p><figure class="figure"><img src="/../image-sparkstandalone/14.png"></figure><br>查看master的WEB UI<br><figure class="figure"><img src="/../image-sparkstandalone/15.png"></figure></p>
+<p><figure class="figure"><img src="/../image-sparkstandalone/14.png"></figure></p>
+<p>查看master的WEB UI</p>
+<p><figure class="figure"><img src="/../image-sparkstandalone/15.png"></figure></p>
 
 	
 
